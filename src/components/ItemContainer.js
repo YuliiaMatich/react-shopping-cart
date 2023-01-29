@@ -1,9 +1,11 @@
-import './ItemDetails.css';
+import './ItemContainer.css';
 
 
-const ItemDetails = (props) => {
+const ItemContainer = (props) => {
+
+
   return (
-   <div className='single-item-container'>
+   <div onClick={props.onClick} className='single-item-container'>
     <h5>{props.productName.length > 20 ? props.productName.slice(0, 20) + "..." : props.productName}</h5>
     <img className='single-item-image' src={props.image}></img>
     <div className="group-description-and-button">
@@ -13,4 +15,4 @@ const ItemDetails = (props) => {
   )
   }
   
-  export default ItemDetails;
+  export default ItemContainer;
