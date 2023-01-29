@@ -1,17 +1,21 @@
-import React from 'react';
-import {Row, Col} from 'react-bootstrap';
+import React from "react";
+import "./Store.css";
+import ItemDetails from "../components/ItemDetails";
 
-const Store = () => {
+const Store = (props) => {
   return (
-    <React.Fragment>
-    <h1>Welcome to the store!</h1>
-    <Row xs={1} md={3} className="g-4">
-      <Col align="center">
-        <h1>Product</h1>
-      </Col>
-    </Row>
-    </React.Fragment>
-  )
-  }
-  
-  export default Store;
+    <div className='containers-list'>
+          {props.itemsList.map((singleItem) => (
+            <ItemDetails
+              key={singleItem.productId}
+              id={singleItem.productId}
+              productName={singleItem.productName}
+              image={singleItem.logoUrls[0]}
+              description={singleItem.description}
+            ></ItemDetails>
+          ))}
+    </div>
+  );
+};
+
+export default Store;
