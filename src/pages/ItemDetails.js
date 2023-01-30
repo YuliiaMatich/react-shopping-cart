@@ -22,9 +22,14 @@ const ItemDetails = ( {singleItem} ) => {
             ? <div><label className="denominations" for="denominations">Denominations:&nbsp;&nbsp;</label>
     <select  name="denominations" id="denominations">
     {singleItem.fixedRecipientDenominations.map((value) => 
-    (<option value={value}>{value}</option>))} </select> </div>: null}
-    <p>Quantity &#40;1-20&#41;:&nbsp; <input type="number" min="1" max="20"></input></p>
-    <Button variant="warning">Add to cart</Button>
+    (<option value={value}>{value}</option>))} </select> 
+    <p>Quantity &#40;1-20&#41;:&nbsp; <input className="quantity-input" type="number" min="1" max="20"></input></p>
+    <Button variant="warning">Add to cart</Button></div>: null}
+
+    {singleItem.denominationType === "RANGE"
+    ? <div><p>Please enter denomination &#40;from ${singleItem.minSenderDenomination} to ${singleItem.maxSenderDenomination}&#41;:&nbsp; <input className="quantity-input" type="number" min={singleItem.minSenderDenomination} max={singleItem.maxSenderDenomination} required></input></p>
+    <p>Quantity &#40;1-20&#41;:&nbsp; <input className="quantity-input" type="number" min="1" max="20" required></input></p>
+    <Button variant="warning">Add to cart</Button></div> : null}
     </div>
     <hr className="hr1"/>
     <div>{singleItem.description}</div>
