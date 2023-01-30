@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -31,7 +31,7 @@ const {id} = useParams();
 
 
   return (
-    <Container>
+    <React.Fragment>
       <NavbarComponent></NavbarComponent>
       <BrowserRouter>
       {!storeItems ? "Loading..." :
@@ -42,7 +42,7 @@ const {id} = useParams();
           <Route path="cancel" element={<Cancel />} />
         </Routes>}
       </BrowserRouter>
-    </Container>
+    </React.Fragment>
   );
 }
 

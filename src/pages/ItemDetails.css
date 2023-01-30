@@ -1,9 +1,9 @@
 .main-item-details-container {
   display: flex;
   flex-direction: row;
-  margin-top: 1.5rem;
     box-shadow: rgb(0 0 0 / 15%) 2.4px 2.4px 3.2px;
     background-color: whitesmoke;
+    padding-top: 1rem;
 }
 
 .item-details-image {
