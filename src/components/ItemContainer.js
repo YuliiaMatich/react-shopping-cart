@@ -2,11 +2,19 @@ import "./ItemContainer.css";
 
 const ItemContainer = (props) => {
   const fixedDenominations = function (array) {
+    // let result = "";
+    // for (let i = 0; i < array.length; i++) {
+    //   result = result + array[i] + "$, ";
+    //     }
+    //     return result.slice(0, -2);
     let result = "";
-    for (let i = 0; i < array.length; i++) {
-      result = result + array[i] + "$, ";
-        }
-        return result.slice(0, -2);
+    if (array.length === 1) {
+      result = "Denomination: " + array[0] + "$";
+    }
+  if (array.length > 1) {
+    result = "Denominations: " + array[0] + "$ - " + array[array.length -1] + "$";
+  }
+      return result;
   };
 
   return (
@@ -31,7 +39,7 @@ const ItemContainer = (props) => {
               "$"
             : null}
           {props.denominationType === "FIXED"
-            ? "Denominations: " + fixedDenominations(props.fixedSenderDenominations)
+            ? fixedDenominations(props.fixedSenderDenominations)
             : null}
         </p>
       </div>

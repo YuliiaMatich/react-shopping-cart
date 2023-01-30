@@ -1,0 +1,27 @@
+.main-item-details-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1.5rem;
+}
+
+.item-details-image {
+  height: 250px;
+  width: 400px;
+  object-fit: cover;
+}
+
+.item-details {
+  margin-left: 2rem;
+}
+
+.hr1 {
+  border-top: 1px solid grey;
+}
+
+.denominations{
+  margin-bottom: 1rem;
+}
+
+.quantity-input{
+  height: 25px;
+}
