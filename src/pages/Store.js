@@ -24,6 +24,10 @@ const Store = (props) => {
               productName={singleItem.productName}
               image={singleItem.logoUrls[0]}
               description={singleItem.description}
+              denominationType={singleItem.denominationType}
+              minRecipientDenomination={singleItem.minRecipientDenomination}
+              maxRecipientDenomination={singleItem.maxRecipientDenomination}
+              fixedSenderDenominations={singleItem.fixedSenderDenominations}
               onClick={(event) => handleClick(event, singleItem)}
             ></ItemContainer>
           ))}

@@ -1,13 +1,12 @@
 .single-item-container {
   width: 300px;
-  height: 300px;
+  height: 350px;
   margin: 1rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   overflow: hidden;
 }
 
@@ -19,6 +18,8 @@
 h5 {
   padding: 0.5rem;
   margin-bottom:0rem;
+  display: flex;
+    justify-content: center;
 }
 
 .single-item-image {
@@ -27,10 +28,12 @@ h5 {
   object-fit: contain;
 }
 
-.group-description-and-button {
+.group-description-and-denomination {
   display: flex;
-  flex-direction: initial;
+  flex-direction: column;
   margin: 0.5rem;
+  padding: 0.5rem;
+  font-size: smaller;
 }
 
 .add-to-cart-button {
