@@ -10,6 +10,7 @@ import Cancel from './pages/Cancel';
 import Success from './pages/Success';
 import Store from './pages/Store';
 import ItemDetails from "./pages/ItemDetails";
+import CartProvider from "./CartContext";
 
 const api = axios.create({
   baseURL:
@@ -31,7 +32,7 @@ const {id} = useParams();
 
 
   return (
-    <React.Fragment>
+    <CartProvider productsArray={storeItems}>
       <NavbarComponent></NavbarComponent>
       <BrowserRouter>
       {!storeItems ? "Loading..." :
@@ -42,7 +43,7 @@ const {id} = useParams();
           <Route path="cancel" element={<Cancel />} />
         </Routes>}
       </BrowserRouter>
-    </React.Fragment>
+    </CartProvider>
   );
 }
 
