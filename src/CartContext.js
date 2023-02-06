@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
-import 'react-local-toast/dist/bundle.css';
-import { LocalToastProvider } from 'react-local-toast';
-import Alert from 'react-bootstrap/Alert';
+import "react-local-toast/dist/bundle.css";
+import { LocalToastProvider } from "react-local-toast";
+import Alert from "react-bootstrap/Alert";
 
 export const CartContext = createContext({
   items: [],
@@ -28,20 +28,37 @@ export function CartProvider({ children, productsArray }) {
     setEnteredQuantity(event.target.value);
   };
 
+  function getProductQuantity(id, denom) {
+    return cartProducts.find(
+      (product) => product.id === id && product.giftCardDenomination === denom
+    );
+  }
+
   function addToCart(event, id) {
     event.preventDefault();
- 
-    if (denomination && enteredQuantity) {
-   setCartProducts(
-    [
-      ...cartProducts,
-      {
-        id: id,
-        giftCardDenomination: denomination,
-        quantity: enteredQuantity,
-      },
-    ]);
-    } 
+
+    const productAlreadyInCart = getProductQuantity(id, denomination);
+
+    if (!productAlreadyInCart) {
+      setCartProducts([
+        ...cartProducts,
+        {
+          id: id,
+          giftCardDenomination: denomination,
+          quantity: enteredQuantity,
+        },
+      ]);
+    } else {
+      setCartProducts(
+        cartProducts.map(
+            product =>
+            product.id === id && product.giftCardDenomination === denomination                                // if condition
+            ? { ...product, quantity: parseInt(product.quantity) +  parseInt(enteredQuantity)} // if statement is true
+            : product                                        // if statement is false
+        )
+    );
+    }
+
     document.getElementsByClassName("quantity-input")[0].value = "";
     document.getElementsByClassName("denomination-input")[0].value = "";
     setDenomination(null);
