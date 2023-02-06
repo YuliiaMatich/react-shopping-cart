@@ -1,12 +1,15 @@
 import React, { createContext, useState } from "react";
+import 'react-local-toast/dist/bundle.css';
+import { LocalToastProvider } from 'react-local-toast';
+import Alert from 'react-bootstrap/Alert';
 
 export const CartContext = createContext({
   items: [],
-  getProductQuantity: () => {},
-  addOneToCart: () => {},
-  removeOneFromCart: () => {},
+  addToCart: () => {},
   deleteFromCart: () => {},
   getTotalCost: () => {},
+  denominationChangeHandler: () => {},
+  quantityChangeHandler: () => {},
 });
 
 // Context (csrt, addToCart, removeCart)
@@ -14,103 +17,78 @@ export const CartContext = createContext({
 
 export function CartProvider({ children, productsArray }) {
   const [cartProducts, setCartProducts] = useState([]);
+  const [denomination, setDenomination] = useState("");
+  const [enteredQuantity, setEnteredQuantity] = useState("");
 
-  function getProductQuantity(id) {
-    const quantity = cartProducts.find(
-      (product) => product.id === id
-    )?.quantity;
-
-    if (quantity === undefined) {
-      return 0;
-    }
-
-    return quantity;
-  }
-
-  function addOneToCart(id) {
-    const quantity = getProductQuantity(id);
-
-    if (quantity === 0) {
-      // product is not in cart
-      setCartProducts([
-        ...cartProducts,
-        {
-          id: id,
-          quantity: 1,
-        },
-      ]);
-    } else {
-      // product is in cart
-      setCartProducts(
-        cartProducts.map((product) =>
-          product.id === id
-            ? { ...product, quantity: product.quantity + 1 }
-            : product
-        )
-      );
-    }
-  }
-
-function removeOneFromCart(id) {
-  const quantity = getProductQuantity(id);
-
-  if(quantity === 1) {
-    deleteFromCart(id);
-  } else {
-    setCartProducts(
-      cartProducts.map((product) =>
-        product.id === id
-          ? { ...product, quantity: product.quantity - 1 }
-          : product
-      )
-    );
-  }
-}
-
-
-  function deleteFromCart(id){
-    setCartProducts(
-      cartProducts => 
-      cartProducts.filter(currentProduct => {
-        return currentProduct.id !==id;
-      })
-    )
+  const denominationChangeHandler = (event) => {
+    setDenomination(event.target.value);
   };
 
+  const quantityChangeHandler = (event) => {
+    setEnteredQuantity(event.target.value);
+  };
+
+  function addToCart(event, id) {
+    event.preventDefault();
+ 
+    if (denomination && enteredQuantity) {
+   setCartProducts(
+    [
+      ...cartProducts,
+      {
+        id: id,
+        giftCardDenomination: denomination,
+        quantity: enteredQuantity,
+      },
+    ]);
+    } 
+    document.getElementsByClassName("quantity-input")[0].value = "";
+    document.getElementsByClassName("denomination-input")[0].value = "";
+    setDenomination(null);
+    setEnteredQuantity(null);
+  }
+
+  function deleteFromCart(id) {
+    setCartProducts((cartProducts) =>
+      cartProducts.filter((currentProduct) => {
+        return currentProduct.id !== id;
+      })
+    );
+  }
+
   function getProductData(id) {
-    let productData = productsArray.find(product => product.id === id);
+    let productData = productsArray.find((product) => product.id === id);
 
     if (productData === undefined) {
-        console.log("Product data does not exist for ID: " + id);
-        return undefined;
+      console.log("Product data does not exist for ID: " + id);
+      return undefined;
     }
 
     return productData;
-  };
+  }
 
   function getTotalCost() {
     let totalCost = 0;
     cartProducts.map((cartItem) => {
-      const productData = getProductData(cartItem.id);
-      totalCost += (productData.price * cartItem.quantity);
+      const productData = getProductData(cartItem.id, denomination);
+      totalCost += Number(denomination) * cartItem.quantity;
     });
 
-  return totalCost;
-  };
+    return totalCost;
+  }
 
   const contextValue = {
     items: cartProducts,
-    getProductQuantity,
-    addOneToCart,
-    removeOneFromCart,
+    addToCart,
     deleteFromCart,
     getTotalCost,
+    denominationChangeHandler,
+    quantityChangeHandler,
   };
 
   return (
     <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
   );
 }
-
 
 export default CartProvider;

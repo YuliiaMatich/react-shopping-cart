@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Navbar, Modal } from "react-bootstrap";
 import "./Navbar.css";
+import CartProvider, { CartContext } from "../CartContext";
 
 const NavbarComponent = (props) => {
-const [show, setShow] =useState(false);
+const cart = useContext(CartContext);
+
+const [show, setShow] = useState(false);
 const handleClose = () => setShow(false); 
 const handleShow = () => setShow(true); 
+
 
   return (
     <React.Fragment>
