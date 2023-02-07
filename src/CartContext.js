@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 
 
+
 export const CartContext = createContext({
   items: [],
   addToCart: () => {},
@@ -15,10 +16,11 @@ export const CartContext = createContext({
 // Provider -> gives your React app access to all the things in your context
 
 export function CartProvider({ children, productsArray }) {
+  
   const [cartProducts, setCartProducts] = useState(JSON.parse(localStorage.getItem("cart")) || []);
   const [denomination, setDenomination] = useState("");
   const [enteredQuantity, setEnteredQuantity] = useState("");
-
+  // const navigate = useNavigate();
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartProducts));
     }, [cartProducts])
@@ -37,7 +39,7 @@ export function CartProvider({ children, productsArray }) {
     );
   }
 
-  function addToCart(event, id) {
+  function addToCart(event, id, productName, img) {
     event.preventDefault();
 
     const productAlreadyInCart = getProductQuantity(id, denomination);
@@ -46,7 +48,9 @@ export function CartProvider({ children, productsArray }) {
       setCartProducts([
         ...cartProducts,
         {
-          id: id,
+          id,
+          productName,
+          img,
           giftCardDenomination: denomination,
           quantity: enteredQuantity,
         },
@@ -70,6 +74,7 @@ export function CartProvider({ children, productsArray }) {
     document.getElementsByClassName("denomination-input")[0].value = "";
     setDenomination(null);
     setEnteredQuantity(null);
+    
   }
 
   function deleteFromCart(id) {
