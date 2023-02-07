@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 
 export const CartContext = createContext({
@@ -15,10 +15,13 @@ export const CartContext = createContext({
 // Provider -> gives your React app access to all the things in your context
 
 export function CartProvider({ children, productsArray }) {
-  const [cartProducts, setCartProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState(JSON.parse(localStorage.getItem("cart")) || []);
   const [denomination, setDenomination] = useState("");
   const [enteredQuantity, setEnteredQuantity] = useState("");
 
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartProducts));
+    }, [cartProducts])
 
   const denominationChangeHandler = (event) => {
     setDenomination(event.target.value);

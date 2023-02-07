@@ -32,7 +32,7 @@ const {id} = useParams();
 
 
   return (
-    <CartProvider productsArray={storeItems}>
+    <CartProvider productsArray={storeItems} >
       <NavbarComponent></NavbarComponent>
       <BrowserRouter>
       {!storeItems ? "Loading..." :
