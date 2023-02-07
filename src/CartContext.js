@@ -1,7 +1,5 @@
 import React, { createContext, useState } from "react";
-import "react-local-toast/dist/bundle.css";
-import { LocalToastProvider } from "react-local-toast";
-import Alert from "react-bootstrap/Alert";
+
 
 export const CartContext = createContext({
   items: [],
@@ -10,6 +8,7 @@ export const CartContext = createContext({
   getTotalCost: () => {},
   denominationChangeHandler: () => {},
   quantityChangeHandler: () => {},
+  showAlert: () => {}
 });
 
 // Context (csrt, addToCart, removeCart)
@@ -19,6 +18,7 @@ export function CartProvider({ children, productsArray }) {
   const [cartProducts, setCartProducts] = useState([]);
   const [denomination, setDenomination] = useState("");
   const [enteredQuantity, setEnteredQuantity] = useState("");
+
 
   const denominationChangeHandler = (event) => {
     setDenomination(event.target.value);
@@ -51,12 +51,16 @@ export function CartProvider({ children, productsArray }) {
     } else {
       setCartProducts(
         cartProducts.map(
-            product =>
-            product.id === id && product.giftCardDenomination === denomination                                // if condition
-            ? { ...product, quantity: parseInt(product.quantity) +  parseInt(enteredQuantity)} // if statement is true
-            : product                                        // if statement is false
+          (product) =>
+            product.id === id && product.giftCardDenomination === denomination // if condition
+              ? {
+                  ...product,
+                  quantity:
+                    parseInt(product.quantity) + parseInt(enteredQuantity),
+                } // if statement is true
+              : product // if statement is false
         )
-    );
+      );
     }
 
     document.getElementsByClassName("quantity-input")[0].value = "";
@@ -100,7 +104,7 @@ export function CartProvider({ children, productsArray }) {
     deleteFromCart,
     getTotalCost,
     denominationChangeHandler,
-    quantityChangeHandler,
+    quantityChangeHandler
   };
 
   return (

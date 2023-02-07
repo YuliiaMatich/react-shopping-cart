@@ -28,3 +28,15 @@
 .quantity-input{
   height: 25px;
 }
+
+.modal-content-styling {
+  border-bottom: none !important;
+  color: #0f5132;
+  border-radius: 6px !important;
+    background-color: #badbcc;
+  border-color: #badbcc; 
+}
+
+.modal-content {
+  margin-top: 10rem;
+}

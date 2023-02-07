@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import "./ItemDetails.css";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import { CartContext } from "../CartContext";
 
 const ItemDetails = ({ singleItem }) => {
 
   const cart = useContext(CartContext);
+  const [show, setShow] = useState(false);
+const handleClose = () => setShow(false); 
+const handleShow = () => setShow(true); 
   // const productQuantity = cart.getProductQuantity(singleItem.productId);
 
   console.log(cart.items);
@@ -17,7 +20,10 @@ const ItemDetails = ({ singleItem }) => {
       <div className="item-details">
         <h1>{singleItem.productName}</h1>
         <hr className="hr1" />
-        <Form onSubmit={(event) => cart.addToCart(event, singleItem.productId)}>
+        <Form onSubmit={(event) => {
+          cart.addToCart(event, singleItem.productId);
+          {handleShow()}
+          }}>
         <div className="group-denomination-and-quantity">
           {singleItem.denominationType === "FIXED" ? (
             <div>
@@ -77,6 +83,11 @@ const ItemDetails = ({ singleItem }) => {
           Add to cart
         </Button>
         </Form>
+        <Modal className="modal" show={show} onHide={handleClose} closeButton>
+        <Modal.Header className="modal-content-styling" closeButton>
+        <Modal.Title>Added to cart</Modal.Title>
+        </Modal.Header>
+    </Modal>
         <hr className="hr1" />
         <div>{singleItem.description}</div>
       </div>
