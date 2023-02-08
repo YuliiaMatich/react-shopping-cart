@@ -77,12 +77,13 @@ export function CartProvider({ children, productsArray }) {
     
   }
 
-  function deleteFromCart(id) {
-    setCartProducts((cartProducts) =>
-      cartProducts.filter((currentProduct) => {
-        return currentProduct.id !== id;
-      })
-    );
+  function deleteFromCart(id, denomination) {
+    let cartContents = JSON.parse(localStorage.getItem("cart"));
+    let newCartContents = cartContents.filter(currentProduct => currentProduct.id !== id || currentProduct.giftCardDenomination !== denomination);
+    console.log({newCartContents})
+    setCartProducts(newCartContents);
+    //localStorage.setItem("cart", JSON.stringify(newCartContents));
+    
   }
 
   function getProductData(id) {

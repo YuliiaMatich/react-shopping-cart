@@ -1,11 +1,11 @@
-.navbar{
+.navbar {
   background-color: #3e4451;
   padding-left: 2rem;
-    padding-right: 2rem;
+  padding-right: 2rem;
 }
 
-.storeName{
-  color:white;
+.storeName {
+  color: white;
 }
 
 .shopping-cart {
@@ -23,7 +23,7 @@
   object-fit: cover;
 }
 
-.group-img-and-name{
+.group-img-and-name {
   display: flex;
   flex-direction: row;
 }
@@ -46,6 +46,11 @@
   justify-content: space-around;
   padding-left: 1rem;
 }
+.group-qty-and-remove {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
 
 .hr-cart {
   border-bottom: 2px solid darkgrey;
@@ -53,4 +58,14 @@
   margin-bottom: 1rem;
 }
 
-
+.group-total-amount-and-checkout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.total-amount {
+  margin: 0;
+  font-size: x-large;
+  font-weight: 600;
+}

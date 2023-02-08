@@ -43,14 +43,26 @@ const NavbarComponent = (props) => {
                       <div className="group-name-denom-qty">
                           <p className="product-name">{itm.productName.length > 20 ? itm.productName.slice(0, 20) + "..." : itm.productName}</p> 
                           <p>Denomination: ${itm.giftCardDenomination}</p>
+                          <div className="group-qty-and-remove">
                           <p>Qty: {itm.quantity} </p>
+                          <Button variant="link" onClick={() => cart.deleteFromCart(itm.id, itm.giftCardDenomination)}>Remove</Button>
                           </div>
                           </div>
+                         
+                          </div>
+            
                           <p className="price">Price: ${itm.giftCardDenomination * itm.quantity}</p>
+                         
+                          
                   </div>
                   <hr className="hr-cart"/>
+                 
                 </>
-              ))}
+              ))}  
+              <div className="group-total-amount-and-checkout">
+              <p className="total-amount">Total amount:</p>
+              <Button>Proceed to checkout</Button>
+              </div>
             </>
           ) : (
             <h1>There are no items in your cart!</h1>
