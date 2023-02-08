@@ -40,7 +40,7 @@ const navigate = useNavigate();
                 className="denomination-input"
                 required
               >
-                <option value="-"> </option>
+                <option value=""> </option>
                 {singleItem.fixedRecipientDenominations.map((value) => (
                   <option value={value}>{value}</option>
                 ))}

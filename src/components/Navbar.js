@@ -35,12 +35,25 @@ const NavbarComponent = (props) => {
           {productsCount > 0 ? (
             <>
               <p>Items in your cart:</p>
-              {cart.items.map((currentProduct, idx) => {
-                <h1>{currentProduct.title}</h1>;
-              })}
+              {cart.items.map((itm) => (
+                <>
+                  <div className="shopping-cart">
+                    <div className="group-img-and-name">
+                      <img className="cart-image" src={itm.img}></img>
+                      <div className="group-name-denom-qty">
+                          <p className="product-name">{itm.productName.length > 20 ? itm.productName.slice(0, 20) + "..." : itm.productName}</p> 
+                          <p>Denomination: ${itm.giftCardDenomination}</p>
+                          <p>Qty: {itm.quantity} </p>
+                          </div>
+                          </div>
+                          <p className="price">Price: ${itm.giftCardDenomination * itm.quantity}</p>
+                  </div>
+                  <hr className="hr-cart"/>
+                </>
+              ))}
             </>
           ) : (
-            <h1>There are no items in the shopping cart!</h1>
+            <h1>There are no items in your cart!</h1>
           )}
         </Modal.Body>
       </Modal>
