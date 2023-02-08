@@ -42,28 +42,44 @@ const NavbarComponent = (props) => {
                     <div className="group-img-and-name">
                       <img className="cart-image" src={itm.img}></img>
                       <div className="group-name-denom-qty">
-                          <p className="product-name">{itm.productName.length > 20 ? itm.productName.slice(0, 20) + "..." : itm.productName}</p> 
-                          <p>Denomination: ${(itm.giftCardDenomination) + ".00"}</p>
-                          <div className="group-qty-and-remove">
+                        <p className="product-name">
+                          {itm.productName.length > 20
+                            ? itm.productName.slice(0, 20) + "..."
+                            : itm.productName}
+                        </p>
+                        <p>
+                          Denomination: $
+                          {parseInt(itm.giftCardDenomination).toFixed(2)}
+                        </p>
+                        <div className="group-qty-and-remove">
                           <p>Qty: {itm.quantity} </p>
-                          <Button variant="link" onClick={() => cart.deleteFromCart(itm.id, itm.giftCardDenomination)}>Remove</Button>
-                          </div>
-                          </div>
-                         
-                          </div>
-            <div className="group-price">
-                          <p className="price">Price:</p>
-                          <p className="price">${(itm.giftCardDenomination * itm.quantity).toFixed(2)}</p>
-                         </div>
-                          
+                          <Button
+                            variant="link"
+                            onClick={() =>
+                              cart.deleteFromCart(
+                                itm.id,
+                                itm.giftCardDenomination
+                              )
+                            }
+                          >
+                            Remove
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="group-price">
+                      <p className="price">Price:</p>
+                      <p className="price">
+                        ${(itm.giftCardDenomination * itm.quantity).toFixed(2)}
+                      </p>
+                    </div>
                   </div>
-                  <hr className="hr-cart"/>
-                 
+                  <hr className="hr-cart" />
                 </>
-              ))}  
+              ))}
               <div className="group-total-amount-and-checkout">
-              <p className="total-amount">Total amount: {totalAmt}</p>
-              <Button>Proceed to checkout</Button>
+                <p className="total-amount">Total amount: {totalAmt}</p>
+                <Button>Proceed to checkout</Button>
               </div>
             </>
           ) : (

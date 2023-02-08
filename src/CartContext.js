@@ -3,13 +3,13 @@ import React, { createContext, useState, useEffect } from "react";
 
 
 export const CartContext = createContext({
+  qty: "",
   items: [],
   addToCart: () => {},
   deleteFromCart: () => {},
   getTotalCost: () => {},
   denominationChangeHandler: () => {},
-  quantityChangeHandler: () => {},
-  showAlert: () => {}
+  quantityChangeHandler: () => {}
 });
 
 // Context (csrt, addToCart, removeCart)
@@ -104,6 +104,7 @@ export function CartProvider({ children, productsArray }) {
   }
 
   const contextValue = {
+    qty: enteredQuantity,
     items: cartProducts,
     addToCart,
     deleteFromCart,

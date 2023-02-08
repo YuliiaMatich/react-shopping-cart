@@ -59,11 +59,10 @@ const navigate = useNavigate();
                   className="denomination-input"
                   type="number"
                   required
-                  min={(singleItem.minSenderDenomination).toFixed(2)}
-                  max={(singleItem.maxSenderDenomination).toFixed(2)}
+                  min={parseInt(singleItem.minSenderDenomination).toFixed(2)}
+                  max={parseInt(singleItem.maxSenderDenomination).toFixed(2)}
                   onChange={cart.denominationChangeHandler}
                 ></input>
-                
               </p>
             </div>
           ) : null}
@@ -78,6 +77,7 @@ const navigate = useNavigate();
                     required
                   ></input>
                 </p>
+                <p>Sender Fee (${singleItem.senderFee.toFixed(2)}/per 1 item): ${(singleItem.senderFee * cart.qty).toFixed(2)}</p>
         </div>
 
         <Button
