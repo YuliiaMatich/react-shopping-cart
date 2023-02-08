@@ -9,7 +9,7 @@
 }
 
 .shopping-cart {
-  height: 100px;
+  height: 110px;
   width: 100%;
   margin-bottom: 1rem;
   display: flex;
@@ -58,6 +58,14 @@
   display: flex;
   flex-direction: row;
   align-items: baseline;
+}
+
+.denomination{
+  margin-bottom: 0;
+}
+
+.sender-fee {
+  margin-bottom: 0
 }
 
 .hr-cart {

@@ -24,7 +24,7 @@ const navigate = useNavigate();
         <h1>{singleItem.productName}</h1>
         <hr className="hr1" />
         <Form onSubmit={(event) => {
-          cart.addToCart(event, singleItem.productId, singleItem.productName, singleItem.img);
+          cart.addToCart(event, singleItem.productId, singleItem.productName, singleItem.img, singleItem.senderFee);
           {handleShow()};
           }}>
         <div className="group-denomination-and-quantity">

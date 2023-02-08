@@ -39,7 +39,7 @@ export function CartProvider({ children, productsArray }) {
     );
   }
 
-  function addToCart(event, id, productName, img) {
+  function addToCart(event, id, productName, img, fee) {
     event.preventDefault();
 
     const productAlreadyInCart = getProductQuantity(id, denomination);
@@ -53,6 +53,7 @@ export function CartProvider({ children, productsArray }) {
           img,
           giftCardDenomination: denomination,
           quantity: enteredQuantity,
+          fee,
         },
       ]);
     } else {
@@ -80,7 +81,6 @@ export function CartProvider({ children, productsArray }) {
   function deleteFromCart(id, denomination) {
     let cartContents = JSON.parse(localStorage.getItem("cart"));
     let newCartContents = cartContents.filter(currentProduct => currentProduct.id !== id || currentProduct.giftCardDenomination !== denomination);
-    console.log({newCartContents})
     setCartProducts(newCartContents);
     //localStorage.setItem("cart", JSON.stringify(newCartContents));
     
@@ -98,7 +98,7 @@ export function CartProvider({ children, productsArray }) {
   }
 
   function getTotalCost() {
-  let totalCost = cartProducts.reduce((total, item) => {return total + (item.giftCardDenomination * item.quantity)}, 0);
+  let totalCost = cartProducts.reduce((total, item) => {return total + (item.giftCardDenomination * item.quantity + (item.quantity * item.fee))}, 0);
   console.log(totalCost)
   return totalCost;
   }

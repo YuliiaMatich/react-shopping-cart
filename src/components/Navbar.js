@@ -47,10 +47,11 @@ const NavbarComponent = (props) => {
                             ? itm.productName.slice(0, 20) + "..."
                             : itm.productName}
                         </p>
-                        <p>
+                        <p className="denomination">
                           Denomination: $
                           {parseInt(itm.giftCardDenomination).toFixed(2)}
                         </p>
+                        <p className="sender-fee">Sender Fee: ${(Number(itm.fee) * Number(itm.quantity)).toFixed(2)}</p>
                         <div className="group-qty-and-remove">
                           <p>Qty: {itm.quantity} </p>
                           <Button
@@ -70,7 +71,7 @@ const NavbarComponent = (props) => {
                     <div className="group-price">
                       <p className="price">Price:</p>
                       <p className="price">
-                        ${(itm.giftCardDenomination * itm.quantity).toFixed(2)}
+                        ${(itm.giftCardDenomination * itm.quantity + (itm.fee * itm.quantity)).toFixed(2)}
                       </p>
                     </div>
                   </div>
