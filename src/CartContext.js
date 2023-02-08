@@ -98,13 +98,9 @@ export function CartProvider({ children, productsArray }) {
   }
 
   function getTotalCost() {
-    let totalCost = 0;
-    cartProducts.map((cartItem) => {
-      const productData = getProductData(cartItem.id, denomination);
-      totalCost += Number(denomination) * cartItem.quantity;
-    });
-
-    return totalCost;
+  let totalCost = cartProducts.reduce((total, item) => {return total + (item.giftCardDenomination * item.quantity)}, 0);
+  console.log(totalCost)
+  return totalCost;
   }
 
   const contextValue = {

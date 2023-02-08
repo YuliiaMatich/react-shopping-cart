@@ -42,7 +42,7 @@ const navigate = useNavigate();
               >
                 <option value=""> </option>
                 {singleItem.fixedRecipientDenominations.map((value) => (
-                  <option value={value}>{value}</option>
+                  <option value={value}>${value.toFixed(2)}</option>
                 ))}
                 
               </select>
@@ -59,8 +59,8 @@ const navigate = useNavigate();
                   className="denomination-input"
                   type="number"
                   required
-                  min={singleItem.minSenderDenomination}
-                  max={singleItem.maxSenderDenomination}
+                  min={(singleItem.minSenderDenomination).toFixed(2)}
+                  max={(singleItem.maxSenderDenomination).toFixed(2)}
                   onChange={cart.denominationChangeHandler}
                 ></input>
                 

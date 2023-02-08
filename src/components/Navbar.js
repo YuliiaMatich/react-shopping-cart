@@ -10,6 +10,7 @@ const NavbarComponent = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const totalAmt = "$" + cart.getTotalCost().toFixed(2);
   const productsCount = cart.items.reduce(
     (sum, product) => sum + parseInt(product.quantity),
     0
@@ -42,7 +43,7 @@ const NavbarComponent = (props) => {
                       <img className="cart-image" src={itm.img}></img>
                       <div className="group-name-denom-qty">
                           <p className="product-name">{itm.productName.length > 20 ? itm.productName.slice(0, 20) + "..." : itm.productName}</p> 
-                          <p>Denomination: ${itm.giftCardDenomination}</p>
+                          <p>Denomination: ${(itm.giftCardDenomination) + ".00"}</p>
                           <div className="group-qty-and-remove">
                           <p>Qty: {itm.quantity} </p>
                           <Button variant="link" onClick={() => cart.deleteFromCart(itm.id, itm.giftCardDenomination)}>Remove</Button>
@@ -50,9 +51,10 @@ const NavbarComponent = (props) => {
                           </div>
                          
                           </div>
-            
-                          <p className="price">Price: ${itm.giftCardDenomination * itm.quantity}</p>
-                         
+            <div className="group-price">
+                          <p className="price">Price:</p>
+                          <p className="price">${(itm.giftCardDenomination * itm.quantity).toFixed(2)}</p>
+                         </div>
                           
                   </div>
                   <hr className="hr-cart"/>
@@ -60,7 +62,7 @@ const NavbarComponent = (props) => {
                 </>
               ))}  
               <div className="group-total-amount-and-checkout">
-              <p className="total-amount">Total amount:</p>
+              <p className="total-amount">Total amount: {totalAmt}</p>
               <Button>Proceed to checkout</Button>
               </div>
             </>
