@@ -9,7 +9,8 @@ export const CartContext = createContext({
   deleteFromCart: () => {},
   getTotalCost: () => {},
   denominationChangeHandler: () => {},
-  quantityChangeHandler: () => {}
+  quantityChangeHandler: () => {},
+  clearCart: () => {}
 });
 
 // Context (csrt, addToCart, removeCart)
@@ -86,21 +87,16 @@ export function CartProvider({ children, productsArray }) {
     
   }
 
-  function getProductData(id) {
-    let productData = productsArray.find((product) => product.id === id);
-
-    if (productData === undefined) {
-      console.log("Product data does not exist for ID: " + id);
-      return undefined;
-    }
-
-    return productData;
-  }
+ 
 
   function getTotalCost() {
   let totalCost = cartProducts.reduce((total, item) => {return total + (item.giftCardDenomination * item.quantity + (item.quantity * item.fee))}, 0);
   console.log(totalCost)
   return totalCost;
+  }
+
+  function clearCart() {
+    setCartProducts([]);
   }
 
   const contextValue = {
@@ -110,7 +106,8 @@ export function CartProvider({ children, productsArray }) {
     deleteFromCart,
     getTotalCost,
     denominationChangeHandler,
-    quantityChangeHandler
+    quantityChangeHandler,
+    clearCart
   };
 
   return (

@@ -4,13 +4,11 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavbarComponent from "./components/Navbar";
-import { Container } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
-import Cancel from './pages/Cancel';
-import Success from './pages/Success';
 import Store from './pages/Store';
 import ItemDetails from "./pages/ItemDetails";
 import CartProvider from "./CartContext";
+import StripeContainer from "./components/StripeContainer";
 
 const api = axios.create({
   baseURL:
@@ -33,14 +31,13 @@ const {id} = useParams();
 
   return (
     <CartProvider productsArray={storeItems} >
-      <NavbarComponent></NavbarComponent>
       <BrowserRouter>
+      <NavbarComponent></NavbarComponent>
       {!storeItems ? "Loading..." :
         <Routes>
           <Route index element={<Store itemsList={storeItems} setSingleItem={setSingleItem}/>} />
           <Route path="/products/:id" element={<ItemDetails id={id} singleItem={singleItem}/> } />
-          <Route path="success" element={<Success />} />
-          <Route path="cancel" element={<Cancel />} />
+          <Route path="payment" element={<StripeContainer/>} />
         </Routes>}
       </BrowserRouter>
     </CartProvider>

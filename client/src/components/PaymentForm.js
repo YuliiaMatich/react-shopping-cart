@@ -3,6 +3,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { CartContext } from "../CartContext";
 import "./PaymentForm.css";
+import successImg from "../images/success.png";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -30,7 +31,7 @@ const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const totalAmt = "$" + cart.getTotalCost().toFixed(2);
+  const totalAmount = (cart.getTotalCost().toFixed(2)) * 100;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,13 +44,14 @@ const PaymentForm = () => {
       try {
         const { id } = paymentMethod;
         const response = await axios.post("http://localhost:4000/payment", {
-          amount: totalAmt,
+          amount: totalAmount,
           id,
         });
 
         if (response.data.success) {
           console.log("Successful payment");
           setSuccess(true);
+          cart.clearCart();
         }
       } catch (error) {
         console.log("Error", error);
@@ -62,6 +64,7 @@ const PaymentForm = () => {
   return (
     <>
       {!success ? (
+        <div className="form-container">
         <form onSubmit={handleSubmit}>
           <fieldset className="FormGroup">
             <div className="FormRow">
@@ -70,9 +73,12 @@ const PaymentForm = () => {
           </fieldset>
           <button className="pay">Pay</button>
         </form>
+        </div>
       ) : (
-        <div>
-          <h2>The purchase was sussessfull! Go back to main page.</h2>
+        <div className="successful-purchase">
+          <img className="payment-image" src={successImg} alt=""/>
+          <h3>The purchase was sussessfull! </h3>
+          <a href="http://localhost:3000/">Go back to main page.</a>
         </div>
       )}
     </>

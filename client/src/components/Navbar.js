@@ -2,9 +2,11 @@ import React, { useState, useContext } from "react";
 import { Button, Navbar, Modal } from "react-bootstrap";
 import "./Navbar.css";
 import CartProvider, { CartContext } from "../CartContext";
+import { useNavigate } from "react-router-dom"; 
 
 const NavbarComponent = (props) => {
   const cart = useContext(CartContext);
+const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -15,6 +17,15 @@ const NavbarComponent = (props) => {
     (sum, product) => sum + parseInt(product.quantity),
     0
   );
+
+
+  
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    navigate('/payment');
+    setShow(false);
+  }
 
   return (
     <React.Fragment>
@@ -80,7 +91,7 @@ const NavbarComponent = (props) => {
               ))}
               <div className="group-total-amount-and-checkout">
                 <p className="total-amount">Total amount: {totalAmt}</p>
-                <Button>Proceed to checkout</Button>
+                <Button  onClick={(event) => handleClick(event)}>Proceed to checkout</Button>
               </div>
             </>
           ) : (
