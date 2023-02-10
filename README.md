@@ -33,12 +33,12 @@ npm start
 
 ## Screenshots
 
-!["Main page"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/client/images/main-page.png?raw=true)
-!["Single item page"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/client/images/single-item.png?raw=true)
-!["Added to cart"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/client/images/added-to-cart.png?raw=true)
-!["Cart"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/client/images/cart.png?raw=true)
-!["Payment page"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/client/images/stripe-payment-page.png?raw=true)
-!["Payment confirmation"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/client/images/payment-confirmation.png?raw=true)
+!["Main page"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/main-page.png)
+!["Single item page"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/single-item.png)
+!["Added to cart"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/added-to-cart.png)
+!["Cart"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/cart.png)
+!["Payment page"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/stripe-payment-page.png)
+!["Payment confirmation"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/payment-confirmation.png)
 
 ## Dependencies (Frontend)
  "dependencies": {
