@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# GiftCards Store
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Fullstack application that is using external API to get gift cards information and Stripe as a payment service.
+Built using React JS, Express and Bootstrap.
 
-## Available Scripts
+User can:
+- browse the list of available gift cards;
+- visit a gift card single page;
+- on a single page user can enter a gift card denomination and choose a quantity of gift cards user would like to purchase. Gift card denominations may be either a range (for example 5$-100$) or fixed denominations (for example: $5, $10, $25, etc.) There is a sender fee $0.50 per card. A sender fee will be dynamically changed when user changes gift cards quanity.
+- once user entered gift cards denomination, quantity and clicked "Add to cart" button - Cart will appear as a pop up. Number of added items will be changed at "Cart (...items)" button, located at the top-right at the Navbar.
+- user can go to main page and continue browsing. The information of the added to cart items will be persisted using browser localStorage.
+- user can click on "Cart (... items)" button at top-right at Navbar - cart will appear as a pop up with the list of added items. 
+- user can remove items with the same denomination from cart at one click. Total amount of items which remained in cart will be adjusted accordingly. If no items left in the cart a message "There are no items in your cart"  will appear.
+- user can proceed to checkout if there are any items in the cart. User will be redirected to a Stripe payment page. If payment is successfull, user will see a confirmation page.
 
-In the project directory, you can run:
+## Setup
 
-### `npm start`
+Install dependencies with `npm install` in both server and client folders.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Running Backend from server folder
+```sh
+node index.js
+```
 
-### `npm test`
+Note: in order to test stripe payment page, please use your stripe credentials. .env.example files are attached.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Running Frontend from client folder
 
-### `npm run build`
+```sh
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Screenshots
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+!["Main page"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/client/images/main-page.png?raw=true)
+!["Single item page"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/client/images/single-item.png?raw=true)
+!["Added to cart"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/client/images/added-to-cart.png?raw=true)
+!["Cart"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/client/images/cart.png?raw=true)
+!["Payment page"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/client/images/stripe-payment-page.png?raw=true)
+!["Payment confirmation"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/client/images/payment-confirmation.png?raw=true)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Dependencies (Frontend)
+ "dependencies": {
+    "@stripe/react-stripe-js": "^1.16.4",
+    "@stripe/stripe-js": "^1.46.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.3.2",
+    "bootstrap": "^5.2.3",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.7.0",
+    "react-dom": "^18.2.0",
+    "react-local-toast": "^1.1.4",
+    "react-router-dom": "^6.8.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  }
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Dependencies (Backend)
+"dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "stripe": "^11.9.1"
+  }

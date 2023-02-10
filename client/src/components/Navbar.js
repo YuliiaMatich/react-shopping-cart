@@ -60,7 +60,7 @@ const navigate = useNavigate();
                         </p>
                         <p className="denomination">
                           Denomination: $
-                          {parseInt(itm.giftCardDenomination).toFixed(2)}
+                          {Number(itm.giftCardDenomination).toFixed(2)}
                         </p>
                         <p className="sender-fee">Sender Fee: ${(Number(itm.fee) * Number(itm.quantity)).toFixed(2)}</p>
                         <div className="group-qty-and-remove">
