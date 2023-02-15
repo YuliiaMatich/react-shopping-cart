@@ -78,10 +78,8 @@ const navigate = useNavigate();
                 id="quantity"
                 required
               >
-                <option value={itm.quantity}>{itm.quantity}</option>
-                {selectQty().map(number => (<option value={number}>{number}</option>))}
-              </select>
-                            Qty: {itm.quantity} 
+                {selectQty().map(number => (number === Number(itm.quantity) ? <option value={itm.quantity} selected>{itm.quantity}</option>  :  <option value={number}>{number}</option>))}
+              </select> 
                             </p>
                           <Button
                             variant="link"
