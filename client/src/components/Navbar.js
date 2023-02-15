@@ -18,6 +18,13 @@ const navigate = useNavigate();
     0
   );
 
+  let selectQty = () => {
+    let result = [];
+    for (let i = 1; i <=20; i++) {
+      result.push(i);
+    }
+    return result;
+  }
 
   
 
@@ -64,7 +71,18 @@ const navigate = useNavigate();
                         </p>
                         <p className="sender-fee">Sender Fee: ${(Number(itm.fee) * Number(itm.quantity)).toFixed(2)}</p>
                         <div className="group-qty-and-remove">
-                          <p>Qty: {itm.quantity} </p>
+                          <p>
+                          <select
+                onChange={(event) => cart.cartQuantityChangeHandler(event, itm)}
+                name="quantity"
+                id="quantity"
+                required
+              >
+                <option value={itm.quantity}>{itm.quantity}</option>
+                {selectQty().map(number => (<option value={number}>{number}</option>))}
+              </select>
+                            Qty: {itm.quantity} 
+                            </p>
                           <Button
                             variant="link"
                             onClick={() =>

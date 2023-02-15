@@ -10,7 +10,8 @@ export const CartContext = createContext({
   getTotalCost: () => {},
   denominationChangeHandler: () => {},
   quantityChangeHandler: () => {},
-  clearCart: () => {}
+  clearCart: () => {},
+  cartQuantityChangeHandler: () => {}
 });
 
 // Context (csrt, addToCart, removeCart)
@@ -32,6 +33,21 @@ export function CartProvider({ children, productsArray }) {
 
   const quantityChangeHandler = (event) => {
     setEnteredQuantity(event.target.value);
+  };
+
+  const cartQuantityChangeHandler = (event, itm) => {
+    setCartProducts(
+    cartProducts.map(
+      (product) =>
+        product === itm // if condition
+          ? {
+              ...product,
+              quantity:
+              event.target.value,
+            } // if statement is true
+          : product // if statement is false
+    )
+    )
   };
 
   function getProductQuantity(id, denom) {
@@ -107,7 +123,8 @@ export function CartProvider({ children, productsArray }) {
     getTotalCost,
     denominationChangeHandler,
     quantityChangeHandler,
-    clearCart
+    clearCart,
+    cartQuantityChangeHandler
   };
 
   return (
