@@ -10,6 +10,7 @@ User can:
 - once user entered gift cards denomination, quantity and clicked "Add to cart" button - Cart will appear as a pop up. Number of added items will be changed at "Cart (...items)" button, located at the top-right at the Navbar.
 - user can go to main page and continue browsing. The information of the added to cart items will be persisted using browser localStorage.
 - user can click on "Cart (... items)" button at top-right at Navbar - cart will appear as a pop up with the list of added items. 
+- user can change a quantity of items with a given denomination in the cart
 - user can remove items with the same denomination from cart at one click. Total amount of items which remained in cart will be adjusted accordingly. If no items left in the cart a message "There are no items in your cart"  will appear.
 - user can proceed to checkout if there are any items in the cart. User will be redirected to a Stripe payment page. If payment is successfull, user will see a confirmation page.
 
@@ -36,7 +37,7 @@ npm start
 !["Main page"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/main-page.png)
 !["Single item page"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/single-item.png)
 !["Added to cart"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/added-to-cart.png)
-!["Cart"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/cart.png)
+!["Cart"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/cart1.png)
 !["Payment page"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/stripe-payment-page.png)
 !["Payment confirmation"](https://github.com/YuliiaMatich/react-shopping-cart/blob/main/images/payment-confirmation.png)
 
