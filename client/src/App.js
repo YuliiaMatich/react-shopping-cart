@@ -12,7 +12,7 @@ import StripeContainer from "./components/StripeContainer";
 
 const api = axios.create({
   baseURL:
-    "https://api.chimoney.io/v0.2/info/assets",
+    "https://025459c9-95ac-4acd-a02a-83b3d26bd1a1.mock.pstmn.io/goods",
 });
 
 
